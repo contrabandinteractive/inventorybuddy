@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Inventory Buddy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css?v=313">
+</head>
+<body>
+  <main>
+
+  {{ if .Results.TotalResults }}
+
+    <section class="container" id="results-container">
+      <img src="/assets/logo.jpg" id="logo">
+      <p>Current stock level: {{ .Results.TotalResults }}</p>
+      <p>{{ .Results.Status }}<p>
+    </section>
+
+  {{else}}
+
+  <section class="container">
+    <img src="/assets/logo.jpg" id="logo">
+    <form action="/monitor" method="GET">
+      <input
+        autofocus
+        class="search-input"
+        value="test"
+        placeholder="Enter a news topic"
+        type="search"
+        name="q"
+        id="q"
+      />
+      <input
+        autofocus
+        class="search-input"
+        value="{{ .AccessToken }}"
+        placeholder="Access Token"
+        type="password"
+        name="AccessToken"
+      /><br>
+      <input
+        autofocus
+        class="search-input"
+        value="{{ .ShopifyStoreName }}"
+        placeholder="Shopify Store Name"
+        type="search"
+        name="ShopifyStoreName"
+      />
+      <input
+        autofocus
+        class="search-input"
+        value="{{ .VariantID }}"
+        placeholder="Product Variant ID"
+        type="search"
+        name="VariantID"
+      />
+      <input
+        autofocus
+        class="search-input"
+        value="{{ .AlertLevel }}"
+        placeholder="Stock alert level"
+        type="search"
+        name="AlertLevel"
+      />
+
+      <input
+        autofocus
+        class="search-input"
+        value="{{ .PhoneNumber }}"
+        placeholder="Phone number"
+        type="search"
+        name="Phone Number"
+      />
+
+      <input
+        autofocus
+        class="search-input"
+        value="{{ .EmailAddress }}"
+        placeholder="Email address"
+        type="search"
+        name="EmailAddress"
+      />
+
+      <br>
+       <input type="submit" value="Submit">
+    </form>
+  </section>
+  {{end}}
+
+
+</main>
+</body>
+<script>
+
+if (window.location.href.indexOf("monitor") > -1) {
+  setTimeout(function(){
+     window.location.reload(1);
+  }, 10000);
+}
+
+</script>
+</html>
